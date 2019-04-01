@@ -1,0 +1,1 @@
+<script src="{THEMES_PAGE}/assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
