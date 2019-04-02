@@ -14,7 +14,8 @@ class MY_Loader extends MX_Loader {
         
         $data = array(
             'SITE_URL'  => site_url(),
-            'BASE_URL'  => base_url()
+            'BASE_URL'  => base_url(),
+            'WEB_TITLE' => $this->config->item('web_title')
         );
         $data = array_merge($data, $vars);
         $data['HEADER_SECTION'] = $this->parser->parse($this->themes.'/layout/header/header', $data, true);
@@ -35,7 +36,8 @@ class MY_Loader extends MX_Loader {
         
         $data = array(
             'SITE_URL'  => site_url(),
-            'BASE_URL'  => base_url()
+            'BASE_URL'  => base_url(),
+            'WEB_TITLE' => $this->config->item('web_title')
         );
         $data = array_merge($data, $vars);
         $data['HEADER_SECTION'] = $this->parser->parse($this->themes.'/layout/header/header', $data, true);

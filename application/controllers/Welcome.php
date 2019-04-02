@@ -27,7 +27,10 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
             $data = array(
-                'THEMES_PAGE'   => base_url('/themes/'.$this->themes)
+                'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
+                'TITLE_PAGE'        => 'Dashboard',
+                'TITLE_PAGE_DESC'   => 'Halaman untuk membantu Monitoring',
+                
             );
             $data['PLUGINS_CSS']    = '';
             $data['PLUGINS_SCRIPT'] = '';
