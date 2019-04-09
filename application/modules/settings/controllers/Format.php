@@ -22,6 +22,7 @@ class Format extends CI_Controller {
         function __construct() {
             parent::__construct();
             $this->themes = $this->config->item('themes');
+            $this->load->model('Mdl_kasbank');
         } 
         
 	public function index()
@@ -64,9 +65,15 @@ class Format extends CI_Controller {
         public function kas_bank()
 	{
             $data = array(
-                'THEMES_PAGE'   => base_url('/themes/'.$this->themes),
+                'THEMES_PAGE'                       => base_url('/themes/'.$this->themes),
                 'SITE_URL'                          => site_url(),
                 'BASE_URL'                          => base_url(),
+                
+                'URL_GET_DATALIST'                  => site_url('settings/format/kasbank_getlist'),
+                'URL_FORM_REDIRECT'                 => site_url('settings/format/kasbank_form'),
+                'URL_FORM_SAVE'                     => site_url('settings/format/kasbank_simpan'),
+                'URL_FORM_DELETE'                   => site_url('settings/format/kasbank_delete'),  
+                
                 'settings_active'                   => 'active',
                 'btn_data_perusahaan_active'        => 'bg-gray',
                 'btn_data_pengguna_active'          => 'bg-gray',
@@ -82,21 +89,22 @@ class Format extends CI_Controller {
                 'TITLE_PAGE_DESC'                   => 'Kas Bank',
                 
                 'LIST_TITLE'                        => 'Daftar Kas Bank',
-                
             );
             
-            //$data['LIST_FIELDS']        = $this->Mdl_pengaturan->getListFields();
+            $data['LIST_FIELDS']        = $this->Mdl_kasbank->getListFields();
             
-            $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/datatable_plugins_css', $data, true);
-            $data['PLUGINS_SCRIPT']     = $this->parser->parse($this->themes.'/layout/common/datatable_plugins_script', $data, true);
-            $data['ADDON_SCRIPT']       = $this->parser->parse($this->themes.'/layout/common/datatable_script', $data, true);
-                        
+            
             $data['LEFT_SECTION']       = $this->parser->parse('settings_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('format_menu_section', $data, true);
-            $data['CENTER_SECTION']     .= $this->parser->parse($this->themes.'/layout/list/list', $data, true);
-            $data['CONTENT_SECTION']    = $this->parser->parse($this->themes.'/layout/content/two_side_section', $data, true);
-            $this->load->userLayout($data);
+            $this->load->userListLayout($data);
 	}
+        
+        function kasbank_getList()
+        {
+            $params     = $this->input->post();
+            $data = $this->Mdl_kasbank->getListData($params);
+            echo json_encode($data);
+        }
         
         public function saldo_awal()
 	{

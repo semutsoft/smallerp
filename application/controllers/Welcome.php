@@ -29,13 +29,13 @@ class Welcome extends CI_Controller {
             $data = array(
                 'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
                 'TITLE_PAGE'        => 'Dashboard',
-                'TITLE_PAGE_DESC'   => 'Halaman untuk membantu Monitoring',
-                
+                'TITLE_PAGE_DESC'   => 'Halaman untuk membantu Monitoring',                
             );
-            $data['PLUGINS_CSS']    = '';
-            $data['PLUGINS_SCRIPT'] = '';
-            $data['ADDON_SCRIPT']   = '';
             
+            $data['CONTENT_SECTION']    ='';
+            $data['PLUGINS_CSS']        = '';
+            $data['PLUGINS_SCRIPT']     = '';
+            $data['ADDON_SCRIPT']       = '';
             
             $this->load->userLayout($data);
 	}

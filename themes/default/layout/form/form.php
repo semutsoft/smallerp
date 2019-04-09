@@ -1,6 +1,20 @@
 <div class="row">    
     <div class="col-md-12">
           <!-- Horizontal Form -->
+          
+          <div class="callout callout-danger hide">
+            <h4>Warning!</h4>
+
+            <p id="msg-error"></p>
+          </div>
+          
+          <div class="callout callout-success hide">
+            <h4>Success!</h4>
+
+            <p id="msg-success"></p>
+          </div>
+          
+          
           <div class="box box-info">
             
             <!-- .box-header -->
@@ -9,7 +23,7 @@
             </div>
             <!-- /.box-header -->
             
-            <form class="form-horizontal">
+            <form class="form-horizontal" id="{FORM_NAME_ID}">
                 <div class="box-body">
                         <!-- begin -->
                         {FORM_FIELDS}

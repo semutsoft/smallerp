@@ -26,20 +26,16 @@ class Akun extends CI_Controller {
                 'btn_currency_active'               => 'bg-orange bg-orange-active',
                 'btn_coa_active'                    => 'bg-gray',
                 'btn_biaya_active'                  => 'bg-gray',
-                'btn_job_active'                    => 'bg-gray'
+                'btn_job_active'                    => 'bg-gray',
+                
             );
             
             //$data['FORM_FIELDS']        = $this->Mdl_perusahaan->getFormFields();
             
-            $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/form_plugins_css', $data, true);
-            $data['PLUGINS_SCRIPT']     = $this->parser->parse($this->themes.'/layout/common/form_plugins_script', $data, true);
-            $data['ADDON_SCRIPT']       = $this->parser->parse($this->themes.'/layout/common/form_script', $data, true);
-                        
             $data['LEFT_SECTION']       = $this->parser->parse('master_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('data_akun_menu_section', $data, true);
-            $data['CENTER_SECTION']     .= $this->parser->parse($this->themes.'/layout/form/form', $data, true);
-            $data['CONTENT_SECTION']    = $this->parser->parse($this->themes.'/layout/content/two_side_section', $data, true);
-            $this->load->userLayout($data);
+            
+            $this->load->userListLayout($data);
 	}
         
         public function coa()
@@ -64,15 +60,10 @@ class Akun extends CI_Controller {
             
             //$data['FORM_FIELDS']        = $this->Mdl_perusahaan->getFormFields();
             
-            $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/form_plugins_css', $data, true);
-            $data['PLUGINS_SCRIPT']     = $this->parser->parse($this->themes.'/layout/common/form_plugins_script', $data, true);
-            $data['ADDON_SCRIPT']       = $this->parser->parse($this->themes.'/layout/common/form_script', $data, true);
-                        
             $data['LEFT_SECTION']       = $this->parser->parse('master_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('data_akun_menu_section', $data, true);
-            $data['CENTER_SECTION']     .= $this->parser->parse($this->themes.'/layout/form/form', $data, true);
-            $data['CONTENT_SECTION']    = $this->parser->parse($this->themes.'/layout/content/two_side_section', $data, true);
-            $this->load->userLayout($data);
+            
+            $this->load->userListLayout($data);
 	}
         
         public function biaya()
@@ -93,19 +84,13 @@ class Akun extends CI_Controller {
                 'btn_coa_active'                    => 'bg-gray',
                 'btn_biaya_active'                  => 'bg-orange bg-orange-active',
                 'btn_job_active'                    => 'bg-gray'
-            );
-            
+            );            
             //$data['FORM_FIELDS']        = $this->Mdl_perusahaan->getFormFields();
             
-            $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/form_plugins_css', $data, true);
-            $data['PLUGINS_SCRIPT']     = $this->parser->parse($this->themes.'/layout/common/form_plugins_script', $data, true);
-            $data['ADDON_SCRIPT']       = $this->parser->parse($this->themes.'/layout/common/form_script', $data, true);
-                        
             $data['LEFT_SECTION']       = $this->parser->parse('master_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('data_akun_menu_section', $data, true);
-            $data['CENTER_SECTION']     .= $this->parser->parse($this->themes.'/layout/form/form', $data, true);
-            $data['CONTENT_SECTION']    = $this->parser->parse($this->themes.'/layout/content/two_side_section', $data, true);
-            $this->load->userLayout($data);
+            
+            $this->load->userListLayout($data);
 	}
         
         public function job()
@@ -129,15 +114,9 @@ class Akun extends CI_Controller {
             );
             
             //$data['FORM_FIELDS']        = $this->Mdl_perusahaan->getFormFields();
-            
-            $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/form_plugins_css', $data, true);
-            $data['PLUGINS_SCRIPT']     = $this->parser->parse($this->themes.'/layout/common/form_plugins_script', $data, true);
-            $data['ADDON_SCRIPT']       = $this->parser->parse($this->themes.'/layout/common/form_script', $data, true);
                         
             $data['LEFT_SECTION']       = $this->parser->parse('master_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('data_akun_menu_section', $data, true);
-            $data['CENTER_SECTION']     .= $this->parser->parse($this->themes.'/layout/form/form', $data, true);
-            $data['CONTENT_SECTION']    = $this->parser->parse($this->themes.'/layout/content/two_side_section', $data, true);
-            $this->load->userLayout($data);
+            $this->load->userListLayout($data);
 	}
 }

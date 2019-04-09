@@ -18,6 +18,9 @@ class Formbuilder {
                 default:                    
                     $data .= form_input($id, $extra['value'], array('placeholder'=>$extra['placeholder'], 'id'=>$id, 'class'=>'form-control'));                                        
                     break;
+                case 'TEXT':                    
+                    $data .= form_input($id, $extra['value'], array('placeholder'=>$extra['placeholder'], 'id'=>$id, 'class'=>'form-control'));                                        
+                    break;
                 case 'LABEL':
                     $data .= form_label($id, $extra['value'], TRUE);
                     break;
@@ -25,7 +28,7 @@ class Formbuilder {
                     $data = form_hidden($id, $extra['value']);
                     break;    
                 case 'PASSWORD':
-                    $data .= form_password($id, $extra['value'], array('placeholder'=>$extra['placeholder']));
+                    $data .= form_password($id, $extra['value'], array('placeholder'=>$extra['placeholder'], 'id'=>$id, 'class'=>'form-control'));                                        
                     break; 
                 case 'NUMBER':
                     $data .= form_input($id, $extra['value'], array('placeholder'=>$extra['placeholder']));

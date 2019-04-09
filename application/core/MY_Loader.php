@@ -43,8 +43,20 @@ class MY_Loader extends MX_Loader {
         $data['HEADER_SECTION'] = $this->parser->parse($this->themes.'/layout/header/header', $data, true);
         $data['HEADER_SECTION'] .= $this->parser->parse($this->themes.'/layout/menu/sidebar_menu', $data, true);
         
+        
+        if (empty($data['CENTER_SECTION'])){
+            $data['CENTER_SECTION'] = '';
+        }
+        $data['CENTER_SECTION']     .= $this->parser->parse($this->themes.'/layout/list/list', $data, true);
+        $data['CONTENT_SECTION']    = $this->parser->parse($this->themes.'/layout/content/two_side_section', $data, true);
+            
+        
         $data['BODY_SECTION'] = $this->parser->parse($this->themes.'/layout/content/body_layout', $data, true);       
         $data['FOOTER_SECTION'] = $this->parser->parse($this->themes.'/layout/footer/footer', $data, true);       
+        
+        $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/datatable_plugins_css', $data, true);
+        $data['PLUGINS_SCRIPT']     = $this->parser->parse($this->themes.'/layout/common/datatable_plugins_script', $data, true);
+        $data['ADDON_SCRIPT']       = $this->parser->parse($this->themes.'/layout/common/datatable_script', $data, true);
         
         $this->parser->parse($this->themes.'/layout/main_layout', $data);
     }
@@ -63,8 +75,18 @@ class MY_Loader extends MX_Loader {
         $data['HEADER_SECTION'] = $this->parser->parse($this->themes.'/layout/header/header', $data, true);
         $data['HEADER_SECTION'] .= $this->parser->parse($this->themes.'/layout/menu/sidebar_menu', $data, true);
         
-        $data['BODY_SECTION'] = $this->parser->parse($this->themes.'/layout/content/body_layout', $data, true);       
-        $data['FOOTER_SECTION'] = $this->parser->parse($this->themes.'/layout/footer/footer', $data, true);       
+        if (empty($data['CENTER_SECTION'])){
+            $data['CENTER_SECTION'] = '';
+        }
+        $data['CENTER_SECTION']     .= $this->parser->parse($this->themes.'/layout/form/form', $data, true);
+        $data['CONTENT_SECTION']    = $this->parser->parse($this->themes.'/layout/content/two_side_section', $data, true);
+        
+        $data['BODY_SECTION']       = $this->parser->parse($this->themes.'/layout/content/body_layout', $data, true);       
+        $data['FOOTER_SECTION']     = $this->parser->parse($this->themes.'/layout/footer/footer', $data, true);       
+        
+        $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/form_plugins_css', $data, true);
+        $data['PLUGINS_SCRIPT']     = $this->parser->parse($this->themes.'/layout/common/form_plugins_script', $data, true);
+        $data['ADDON_SCRIPT']       = $this->parser->parse($this->themes.'/layout/common/form_script', $data, true);
         
         $this->parser->parse($this->themes.'/layout/main_layout', $data);
     }

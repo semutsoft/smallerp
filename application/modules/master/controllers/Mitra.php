@@ -15,7 +15,8 @@ class Mitra extends CI_Controller {
                 'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
                 'SITE_URL'          => site_url(),
                 'BASE_URL'          => base_url(),
-                'master_active'                  => 'active',
+                'LIST_TITLE'                        => 'Kustomer',
+                'master_active'                     => 'active',
                 'btn_data_akun_active'              => 'bg-gray',
                 'btn_data_mitra_active'             => 'bg-orange bg-orange-active',
                 'btn_data_tarif_exim_active'        => 'bg-gray',
@@ -30,19 +31,13 @@ class Mitra extends CI_Controller {
                 'btn_ship_active'                   => 'bg-gray',
                 'btn_harbour_active'                => 'bg-gray',
                 
+                'TITLE_PAGE'                        => 'Kustomer',
+                'TITLE_PAGE_DESC'                   => 'Kustomer',
             );
-            
-            //$data['FORM_FIELDS']        = $this->Mdl_perusahaan->getFormFields();
-            
-            $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/form_plugins_css', $data, true);
-            $data['PLUGINS_SCRIPT']     = $this->parser->parse($this->themes.'/layout/common/form_plugins_script', $data, true);
-            $data['ADDON_SCRIPT']       = $this->parser->parse($this->themes.'/layout/common/form_script', $data, true);
                         
             $data['LEFT_SECTION']       = $this->parser->parse('master_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('data_mitra_menu_section', $data, true);
-            $data['CENTER_SECTION']     .= $this->parser->parse($this->themes.'/layout/form/form', $data, true);
-            $data['CONTENT_SECTION']    = $this->parser->parse($this->themes.'/layout/content/two_side_section', $data, true);
-            $this->load->userLayout($data);
+            $this->load->userListLayout($data);
 	}
         
         public function vendor()
@@ -51,7 +46,8 @@ class Mitra extends CI_Controller {
                 'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
                 'SITE_URL'          => site_url(),
                 'BASE_URL'          => base_url(),
-                'master_active'                  => 'active',
+                'LIST_TITLE'                        => 'Vendor',
+                'master_active'                     => 'active',
                 'btn_data_akun_active'              => 'bg-gray',
                 'btn_data_mitra_active'             => 'bg-orange bg-orange-active',
                 'btn_data_tarif_exim_active'        => 'bg-gray',
@@ -67,17 +63,9 @@ class Mitra extends CI_Controller {
                 'btn_harbour_active'                => 'bg-gray',
             );
             
-            //$data['FORM_FIELDS']        = $this->Mdl_perusahaan->getFormFields();
-            
-            $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/form_plugins_css', $data, true);
-            $data['PLUGINS_SCRIPT']     = $this->parser->parse($this->themes.'/layout/common/form_plugins_script', $data, true);
-            $data['ADDON_SCRIPT']       = $this->parser->parse($this->themes.'/layout/common/form_script', $data, true);
-                        
             $data['LEFT_SECTION']       = $this->parser->parse('master_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('data_mitra_menu_section', $data, true);
-            $data['CENTER_SECTION']     .= $this->parser->parse($this->themes.'/layout/form/form', $data, true);
-            $data['CONTENT_SECTION']    = $this->parser->parse($this->themes.'/layout/content/two_side_section', $data, true);
-            $this->load->userLayout($data);
+            $this->load->userListLayout($data);
 	}
         
         public function employee()
@@ -86,7 +74,9 @@ class Mitra extends CI_Controller {
                 'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
                 'SITE_URL'          => site_url(),
                 'BASE_URL'          => base_url(),
-                'master_active'                  => 'active',
+                'LIST_TITLE'                        => 'Karyawan',
+            
+                'master_active'                     => 'active',
                 'btn_data_akun_active'              => 'bg-gray',
                 'btn_data_mitra_active'             => 'bg-orange bg-orange-active',
                 'btn_data_tarif_exim_active'        => 'bg-gray',
@@ -102,17 +92,9 @@ class Mitra extends CI_Controller {
                 'btn_harbour_active'                => 'bg-gray',
             );
             
-            //$data['FORM_FIELDS']        = $this->Mdl_perusahaan->getFormFields();
-            
-            $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/form_plugins_css', $data, true);
-            $data['PLUGINS_SCRIPT']     = $this->parser->parse($this->themes.'/layout/common/form_plugins_script', $data, true);
-            $data['ADDON_SCRIPT']       = $this->parser->parse($this->themes.'/layout/common/form_script', $data, true);
-                        
             $data['LEFT_SECTION']       = $this->parser->parse('master_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('data_mitra_menu_section', $data, true);
-            $data['CENTER_SECTION']     .= $this->parser->parse($this->themes.'/layout/form/form', $data, true);
-            $data['CONTENT_SECTION']    = $this->parser->parse($this->themes.'/layout/content/two_side_section', $data, true);
-            $this->load->userLayout($data);
+            $this->load->userListLayout($data);
 	}
         
         
@@ -122,7 +104,9 @@ class Mitra extends CI_Controller {
                 'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
                 'SITE_URL'          => site_url(),
                 'BASE_URL'          => base_url(),
-                'master_active'                  => 'active',
+                'LIST_TITLE'                        => 'Bagian/Divisi/Dept',
+            
+                'master_active'                     => 'active',
                 'btn_data_akun_active'              => 'bg-gray',
                 'btn_data_mitra_active'             => 'bg-orange bg-orange-active',
                 'btn_data_tarif_exim_active'        => 'bg-gray',
@@ -138,17 +122,9 @@ class Mitra extends CI_Controller {
                 'btn_harbour_active'                => 'bg-gray',
             );
             
-            //$data['FORM_FIELDS']        = $this->Mdl_perusahaan->getFormFields();
-            
-            $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/form_plugins_css', $data, true);
-            $data['PLUGINS_SCRIPT']     = $this->parser->parse($this->themes.'/layout/common/form_plugins_script', $data, true);
-            $data['ADDON_SCRIPT']       = $this->parser->parse($this->themes.'/layout/common/form_script', $data, true);
-                        
             $data['LEFT_SECTION']       = $this->parser->parse('master_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('data_mitra_menu_section', $data, true);
-            $data['CENTER_SECTION']     .= $this->parser->parse($this->themes.'/layout/form/form', $data, true);
-            $data['CONTENT_SECTION']    = $this->parser->parse($this->themes.'/layout/content/two_side_section', $data, true);
-            $this->load->userLayout($data);
+            $this->load->userListLayout($data);
 	}
         
         public function ship()
@@ -157,7 +133,8 @@ class Mitra extends CI_Controller {
                 'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
                 'SITE_URL'          => site_url(),
                 'BASE_URL'          => base_url(),
-                'master_active'                  => 'active',
+                'LIST_TITLE'                        => 'Kapal',
+                'master_active'                     => 'active',
                 'btn_data_akun_active'              => 'bg-gray',
                 'btn_data_mitra_active'             => 'bg-orange bg-orange-active',
                 'btn_data_tarif_exim_active'        => 'bg-gray',
@@ -173,17 +150,9 @@ class Mitra extends CI_Controller {
                 'btn_harbour_active'                => 'bg-gray',
             );
             
-            //$data['FORM_FIELDS']        = $this->Mdl_perusahaan->getFormFields();
-            
-            $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/form_plugins_css', $data, true);
-            $data['PLUGINS_SCRIPT']     = $this->parser->parse($this->themes.'/layout/common/form_plugins_script', $data, true);
-            $data['ADDON_SCRIPT']       = $this->parser->parse($this->themes.'/layout/common/form_script', $data, true);
-                        
             $data['LEFT_SECTION']       = $this->parser->parse('master_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('data_mitra_menu_section', $data, true);
-            $data['CENTER_SECTION']     .= $this->parser->parse($this->themes.'/layout/form/form', $data, true);
-            $data['CONTENT_SECTION']    = $this->parser->parse($this->themes.'/layout/content/two_side_section', $data, true);
-            $this->load->userLayout($data);
+            $this->load->userListLayout($data);
 	}
         
         public function harbour()
@@ -192,7 +161,9 @@ class Mitra extends CI_Controller {
                 'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
                 'SITE_URL'          => site_url(),
                 'BASE_URL'          => base_url(),
-                'master_active'                  => 'active',
+                'LIST_TITLE'                        => 'Pelabuhan',
+            
+                'master_active'                     => 'active',
                 'btn_data_akun_active'              => 'bg-gray',
                 'btn_data_mitra_active'             => 'bg-orange bg-orange-active',
                 'btn_data_tarif_exim_active'        => 'bg-gray',
@@ -208,16 +179,8 @@ class Mitra extends CI_Controller {
                 'btn_harbour_active'                => 'bg-orange bg-orange-active',
             );
             
-            //$data['FORM_FIELDS']        = $this->Mdl_perusahaan->getFormFields();
-            
-            $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/form_plugins_css', $data, true);
-            $data['PLUGINS_SCRIPT']     = $this->parser->parse($this->themes.'/layout/common/form_plugins_script', $data, true);
-            $data['ADDON_SCRIPT']       = $this->parser->parse($this->themes.'/layout/common/form_script', $data, true);
-                        
             $data['LEFT_SECTION']       = $this->parser->parse('master_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('data_mitra_menu_section', $data, true);
-            $data['CENTER_SECTION']     .= $this->parser->parse($this->themes.'/layout/form/form', $data, true);
-            $data['CONTENT_SECTION']    = $this->parser->parse($this->themes.'/layout/content/two_side_section', $data, true);
-            $this->load->userLayout($data);
+            $this->load->userListLayout($data);
 	}
 }

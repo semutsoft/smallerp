@@ -50,13 +50,15 @@ class Mdl_utama extends CI_Model{
         return $data;
     }
     
+    
+    
     function getList($params)
     {
         $keys = $this->table['colomn'];
-        $fields[] = 'id';
+        $fields[] = $this->table['idkey'];
         foreach($keys as $row):
             if ($row['visible']){
-                $fields[] = $row['id'];
+                $fields[] = $this->table['idkey'];
             }
         endforeach;
         
