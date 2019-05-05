@@ -23,6 +23,7 @@ class Perusahaan extends CI_Controller {
             parent::__construct();
             $this->themes = $this->config->item('themes');
             $this->load->model('Mdl_perusahaan');
+            $this->companyid = 1;
         } 
         
 	public function index()
@@ -40,6 +41,7 @@ class Perusahaan extends CI_Controller {
                 'btn_cabang_active'         => 'bg-gray',
             );
             
+            $detail                     = $this->Mdl_perusahaan->getDetail();
             $data['FORM_FIELDS']        = $this->Mdl_perusahaan->getFormFields();
             
             $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/form_plugins_css', $data, true);

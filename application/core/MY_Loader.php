@@ -8,8 +8,9 @@ class MY_Loader extends MX_Loader {
     
     function userLayout($vars)
     {
-        if (empty($userid)){
-            //redirect('users/login', 'refresh');
+        $this->userid = $this->session->userdata('user_id');
+        if (empty($this->userid)){
+            ///redirect('users/login', 'refresh');
         }
         
         $data = array(
@@ -96,7 +97,6 @@ class MY_Loader extends MX_Loader {
     {
         $data = array();
         $data = array_merger($data, $vars);
-        
         $this->parser->parse($themes.'/layout/main_layout', $data);
     }
 }

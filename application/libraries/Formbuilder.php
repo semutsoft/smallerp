@@ -71,7 +71,7 @@ class Formbuilder {
                         $type           = $row['format'];
                         $id             = $row['id'];
                         $extra          = $row;
-                        $extra['value'] = $total;
+                        $extra['value'] = '';
                         $data .= $this->format_form($type, $id, $extra);                    
                     }
                 endforeach;

@@ -6,9 +6,9 @@ class Mdl_perusahaan extends Mdl_utama{
     function __construct() {
         parent::__construct();
         $this->table = array(
-            'name'      => 'perusahaan',
+            'name'      => 'mst_company',
             'colomn'    => array(
-                'id'                        => array('id'=>'id', 'label'=>'ID', 'key'=>true, 'visible'=>false, 'form'=>array(
+                'id'                        => array('id'=>'company_id', 'label'=>'ID', 'key'=>true, 'visible'=>false, 'form'=>array(
                                                     array('id'=>'id1', 'label'=>'ID', 'visible'=>false, 'format'=>'HIDDEN', 'placeholder'=>'', 'required'=>false, 'col_css'=>'col-md-10'))), 
                 'kode'                      => array('id'=>'kode', 'label'=>'KODE', 'key'=>false, 'visible'=>false, 'form'=>array(
                                                     array('id'=>'kode', 'label'=>'Kode','visible'=>true, 'format'=>'LABEL', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-10'))), 
@@ -67,8 +67,8 @@ class Mdl_perusahaan extends Mdl_utama{
             'where'     => array(),
             'order'     => array(),
         );
-        
     }
+    
     
     
 }

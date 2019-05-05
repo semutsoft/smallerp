@@ -50,7 +50,13 @@ class Mdl_utama extends CI_Model{
         return $data;
     }
     
-    
+    function getDetail($id)
+    {
+        $this->db->where($this->table['idkey'], $id);
+        $query = $this->db->get($this->table['name']);
+        $row = $query->row();
+        return $row;
+    }
     
     function getList($params)
     {
@@ -58,7 +64,7 @@ class Mdl_utama extends CI_Model{
         $fields[] = $this->table['idkey'];
         foreach($keys as $row):
             if ($row['visible']){
-                $fields[] = $this->table['idkey'];
+                $fields[] = $row['id'];
             }
         endforeach;
         
@@ -66,9 +72,12 @@ class Mdl_utama extends CI_Model{
         $data['total'] = $this->db->count_all_results($this->table['name']);
         
         $this->db->select($fields);
+        $this->db->order_by($this->table['order'][0], $this->table['order'][1]);
+        $this->db->limit(10);
+        
         $query = $this->db->get($this->table['name']);
         $data['msg'] = $this->db->last_query(); 
-        $data['filter'] = $query->num_rows();
+        $data['filter'] = $data['total'];
         if ($data['filter']>0){
             if ($query->num_rows()>0){
                 $data['results'] = $query->result();
@@ -76,6 +85,9 @@ class Mdl_utama extends CI_Model{
         } 
         return $data;
     }
+    
+    
+    
     
     
     
