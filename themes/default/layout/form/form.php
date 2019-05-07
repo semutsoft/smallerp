@@ -24,21 +24,26 @@
             <!-- /.box-header -->
             
             <form class="form-horizontal" id="{FORM_NAME_ID}">
+                <!-- /begin ..box-body -->
                 <div class="box-body">
-                        <!-- begin -->
                         {FORM_FIELDS}
-                            
+                        <!-- begin::SHOW FIELDS -->
+                        
                                 {form_field}
-                            
-                        {/FORM_FIELDS}
-                        <!-- begin -->                        
+                        
+                        <!-- end::SHOW FIELDS -->    
+                        
+                        {/FORM_FIELDS}   
                 </div>  
-                <!-- /.box-body -->
+                <!-- /end ..box-body -->
             
+                <!-- /begin ..box-footer -->
                 <div class="box-footer">
                        <button type="submit" class="btn btn-default">Kembali</button>
                        <button type="submit" class="btn btn-info pull-right">Simpan</button>
                 </div>
+                <!-- /end ..box-footer -->
+            
             </form>  
             
           </div>

@@ -5,8 +5,10 @@ class Cabang extends CI_Controller {
     
         function __construct() {
             parent::__construct();
+            $this->companyid = 1;
             $this->themes = $this->config->item('themes');
             $this->load->model('Mdl_cabang');
+            
         } 
         
 	public function index()
@@ -19,7 +21,7 @@ class Cabang extends CI_Controller {
                 'URL_GET_DATALIST'                  => site_url('settings/cabang/getlist'),
                 'URL_FORM_REDIRECT'                 => site_url('settings/cabang/form'),
                 'URL_FORM_SAVE'                     => site_url('settings/cabang/simpan'),
-                'URL_FORM_DELETE'                   => site_url('settings/cabang/delete'),                
+                'URL_FORM_DELETE'                   => site_url('settings/cabang/hapus'),                
                 
                 'settings_active'                   => 'active',
                 'btn_data_perusahaan_active'        => 'bg-orange bg-orange-active',
@@ -71,7 +73,12 @@ class Cabang extends CI_Controller {
                 'LIST_TITLE'                        => 'Daftar Cabang',
             );
             
-            $data['FORM_FIELDS']        = $this->Mdl_cabang->getFormFields();
+            if ($id > 0){
+                $detail                     = $this->Mdl_cabang->getDetail($id);
+            } else {
+                $detail = array();
+            }
+            $data['FORM_FIELDS']        = $this->Mdl_cabang->getFormFields($detail);
             
             $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/form_plugins_css', $data, true);
             $data['PLUGINS_SCRIPT']     = $this->parser->parse($this->themes.'/layout/common/form_plugins_script', $data, true);
@@ -97,8 +104,17 @@ class Cabang extends CI_Controller {
             $this->load->library('form_validation');
             
             $fields = $this->Mdl_cabang->table['colomn'];
+            
             foreach ($fields as $row):
-                $this->form_validation->set_rules($row['id'], $row['label'], 'required');
+                if (!empty($row['form'])){
+                    
+                    foreach($row['form'] as $form) :
+                        if ($form['required']){
+                            $this->form_validation->set_rules($form['id'], $form['label'], 'required');
+                        }
+                    endforeach;
+                    
+                }
             endforeach;
             
             
@@ -106,7 +122,7 @@ class Cabang extends CI_Controller {
             {
                 $data = array(
                     'status'        => 0,
-                    'msg'           => 'Kesalahan Penginputan:: ' . json_encode(validation_errors())
+                    'msg'           => 'Kesalahan Penginputan:: <br>' . strip_tags(json_encode(validation_errors()))
                 );
             }
             else
@@ -149,4 +165,26 @@ class Cabang extends CI_Controller {
             }
             echo json_encode($data);
         }
+        
+        
+        function hapus()
+        {
+            $id = $this->input->post('id');
+            $stat = $this->Mdl_cabang->DeleteData($id);
+            if ($stat){
+                $data = array(
+                            'status'        => 1,
+                            'msg'           => 'Sukses::Data berhasil di hapus'
+                );
+                        
+            } else {
+                $data = array(
+                            'status'        => 0,
+                            'msg'           => 'Gagal::Data tidak berhasil dihapus'
+                );
+                        
+            }
+            echo json_encode($data);
+        }
+        
 }

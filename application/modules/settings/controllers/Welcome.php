@@ -7,6 +7,7 @@ class Welcome extends CI_Controller {
             parent::__construct();
             $this->themes = $this->config->item('themes');
             $this->load->model('Mdl_perusahaan');
+            $this->companyid = 1;
         } 
         
 	public function index()
@@ -19,7 +20,12 @@ class Welcome extends CI_Controller {
                 'TITLE_PAGE'                        => 'Settings',
                 'TITLE_PAGE_DESC'                   => 'Change your account, users',
                 
-                 'settings_active'                  => 'active',
+                'FORM_TITLE'                        => 'Profile Perusahaan',
+                'FORM_NAME_ID'                      => 'company_form',
+                
+                'URL_FORM_SAVE'                     => site_url('settings/perusahaan/simpan'),
+                
+                'settings_active'                   => 'active',
                 'btn_data_perusahaan_active'        => 'bg-orange bg-orange-active',
                 'btn_data_pengguna_active'          => 'bg-gray',
                 'btn_data_transaksi_active'         => 'bg-gray',
@@ -28,7 +34,8 @@ class Welcome extends CI_Controller {
                 'btn_cabang_active'         => 'bg-gray',
             );
             
-            $data['FORM_FIELDS']        = $this->Mdl_perusahaan->getFormFields();
+            $detail                     = $this->Mdl_perusahaan->getDetail($this->companyid);
+            $data['FORM_FIELDS']        = $this->Mdl_perusahaan->getFormFields($detail);
             
             $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/form_plugins_css', $data, true);
             $data['PLUGINS_SCRIPT']     = $this->parser->parse($this->themes.'/layout/common/form_plugins_script', $data, true);

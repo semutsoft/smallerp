@@ -69,7 +69,7 @@ class Format extends CI_Controller {
                 'SITE_URL'                          => site_url(),
                 'BASE_URL'                          => base_url(),
                 
-                'URL_GET_DATALIST'                  => site_url('settings/format/kasbank_getlist'),
+                'URL_GET_DATALIST'                  => site_url('settings/kasbank/getlist'),
                 'URL_FORM_REDIRECT'                 => site_url('settings/format/kasbank_form'),
                 'URL_FORM_SAVE'                     => site_url('settings/format/kasbank_simpan'),
                 'URL_FORM_DELETE'                   => site_url('settings/format/kasbank_delete'),  

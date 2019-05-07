@@ -5,6 +5,7 @@ class Users extends CI_Controller {
 
 	function __construct() {
             parent::__construct();
+            $this->companyid = 1;
             $this->themes = $this->config->item('themes');
             $this->load->Model('Mdl_users');
         }   
@@ -56,7 +57,7 @@ class Users extends CI_Controller {
             echo json_encode($data);
         }
         
-        function form()
+        function form($id)
         {
             $data = array(
                 'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
@@ -81,7 +82,13 @@ class Users extends CI_Controller {
                 'LIST_TITLE'                        => 'Daftar Pengguna',
             );
             
-            $data['FORM_FIELDS']        = $this->Mdl_users->getFormFields();
+            if ($id > 0){
+                $detail                     = $this->Mdl_users->getDetail($id);
+            } else {
+                $detail = array();
+            }
+            
+            $data['FORM_FIELDS']        = $this->Mdl_users->getFormFields($detail);
             
             $data['LEFT_SECTION']       = $this->parser->parse('settings_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('pengguna_menu_section', $data, true);

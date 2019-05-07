@@ -6,31 +6,33 @@ class Mdl_cabang extends Mdl_utama{
     function __construct() {
         parent::__construct();
         $this->table = array(
-            'name'      => 'mst_customer_branch',
+            'name'      => 'mst_company_branch',
             'colomn'    => array(
                 'branch_id'                 => array('id'=>'branch_id', 'label'=>'ID', 'key'=>true, 'visible'=>false, 'form'=>array(
-                                                    array('id'=>'branch_id', 'label'=>'ID', 'visible'=>false, 'format'=>'HIDDEN', 'placeholder'=>'', 'required'=>false, 'col_css'=>'col-md-10'))), 
-                'branch_code'               => array('id'=>'branch_code', 'label'=>'Kode', 'key'=>false, 'visible'=>true, 'form'=>array(
-                                                    array('id'=>'branch_name', 'label'=>'Kode Cabang','visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-10'))), 
+                                                    array('id'=>'branch_id', 'label'=>'ID', 'visible'=>true, 'format'=>'HIDDEN', 'placeholder'=>'', 'required'=>false, 'col_css'=>'col-md-10'))), 
+                
+                'company_id'               => array('id'=>'company_id', 'label'=>'Kode', 'key'=>false, 'visible'=>false, 'form'=>array(
+                                                    array('id'=>'company_id', 'label'=>'Kode Cabang','visible'=>false, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>false, 'col_css'=>'col-md-10'))), 
                 'branch_name'               => array('id'=>'branch_name', 'label'=>'Nama Cabang', 'key'=>false, 'visible'=>true, 'form'=>array(
                                                     array('id'=>'branch_name', 'label'=>'Nama Cabang','visible'=>true, 'format'=>'TEXT=', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-10'))), 
                 'branch_address'            => array('id'=>'branch_address', 'label'=>'Alamat', 'key'=>false, 'visible'=>true, 'form'=>array(
                                                     array('id'=>'branch_address', 'label'=>'Alamat', 'visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-10')) ), 
-                'city_id'                   => array('id'=>'city_id', 'label'=>'Kota', 'key'=>false, 'visible'=>false, 'form'=>array(
-                                                    array('id'=>'city_id', 'label'=>'Kota / Kabupaten', 'visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-4'), 
-                                                    array('id'=>'propinsi_id', 'label'=>'Propinsi', 'visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-4'))), 
-                'propinsi_id'               => array('id'=>'propinsi', 'label'=>'Propinsi', 'key'=>false, 'visible'=>false, 'form'=>array(array('visible'=>false))),
-                'kode_pos'                  => array('id'=>'kode_pos', 'label'=>'Kode Pos', 'key'=>false, 'visible'=>false, 'form'=>array(
-                                                    array('id'=>'kode_pos', 'label'=>'Kode Pos','visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-4'),
-                                                    array('id'=>'negara', 'label'=>'Negara','visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-4'))), 
-               /* 'negara'                    => array('id'=>'negara', 'label'=>'Negara', 'key'=>false, 'visible'=>false, 'form'=>array(array('visible'=>false))), 
-                'telp'                      => array('id'=>'telp', 'label'=>'Telp', 'key'=>false, 'visible'=>true, 'form'=>array(
-                                                    array('id'=>'telp', 'label'=>'Telp','visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-4'),
-                                                    array('id'=>'fax', 'label'=>'Fax','visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-4'))), 
-                'fax'                       => array('id'=>'fax', 'label'=>'Fax', 'key'=>false, 'visible'=>false, 'form'=>array(array('visible'=>false))), 
-                'email'                     => array('id'=>'email', 'label'=>'Email', 'key'=>false, 'visible'=>true, 'form'=>array(
-                                                    array('id'=>'email', 'label'=>'Email','visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-10')) ), 
-                'web'                       => array('id'=>'web', 'label'=>'Web', 'key'=>false, 'visible'=>false, 'form'=>array(
+                'branch_city'               => array('id'=>'branch_city', 'label'=>'Kota', 'key'=>false, 'visible'=>false, 'form'=>array(
+                                                    array('id'=>'branch_city', 'label'=>'Kota / Kabupaten', 'visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-4'), 
+                                                    array('id'=>'branch_province', 'label'=>'Propinsi', 'visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-4'))), 
+                'branch_province'           => array('id'=>'branch_province', 'label'=>'Propinsi', 'key'=>false, 'visible'=>false),
+                'branch_zip'                => array('id'=>'branch_zip', 'label'=>'Kode Pos', 'key'=>false, 'visible'=>false, 'form'=>array(
+                                                    array('id'=>'branch_zip', 'label'=>'Kode Pos','visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-4'),
+                                                    array('id'=>'branch_country', 'label'=>'Negara','visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-4'))), 
+                'branch_negara'             => array('id'=>'branch_country', 'label'=>'Negara', 'key'=>false, 'visible'=>false), 
+                'branch_phone'              => array('id'=>'branch_phone', 'label'=>'Telp', 'key'=>false, 'visible'=>true, 'form'=>array(
+                                                    array('id'=>'branch_phone', 'label'=>'Telp','visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-4'),
+                                                    array('id'=>'branch_fax', 'label'=>'Fax','visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-4'))), 
+                'branch_fax'                => array('id'=>'branch_fax', 'label'=>'Fax', 'key'=>false, 'visible'=>true), 
+                'branch_email'              => array('id'=>'branch_email', 'label'=>'Email', 'key'=>false, 'visible'=>false, 'form'=>array(
+                                                    array('id'=>'branch_email', 'label'=>'Email','visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-10')) ), 
+                
+                /*'web'                       => array('id'=>'web', 'label'=>'Web', 'key'=>false, 'visible'=>false, 'form'=>array(
                                                     array('id'=>'web', 'label'=>'Website','visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-10')) ), 
                 'no_seri_faktur_pajak'      => array('id'=>'no_seri_faktur_pajak', 'label'=>'Faktur Pajak (No Seri)', 'key'=>false, 'visible'=>false, 'form'=>array(
                                                     array('id'=>'no_seri_faktur_pajak', 'label'=>'Faktur Pajak (No Seri)', 'visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>true, 'col_css'=>'col-md-10')) ), 
@@ -62,8 +64,10 @@ class Mdl_cabang extends Mdl_utama{
             ),
             'idkey'     => 'branch_id',
             'join'      => array(),
-            'where'     => array(),
-            'order'     => array(),
+            'where'     => array(
+                array('company_id', $this->companyid),
+            ),
+            'order'     => array('branch_name', 'asc')
         );
     }
     
@@ -85,13 +89,12 @@ class Mdl_cabang extends Mdl_utama{
                 $button .= '<button class="btn btn-danger btn-sm btn-hapus" data-id="'.$row->branch_id.'"> <i class="fa fa-trash"></i>  Hapus</button>';
 
                 $list[] = array(
-                    'no'            => $no,
-                    'kode_cabang'   => $row->branch_code,
-                    'nama_cabang'   => $row->branch_name,
-                    'alamat'        => $row->branch_address,
-                    'telp'          => $row->branch_phone,
-                    'fax'         => $row->branch_fax,
-                    'actions'       => $button
+                    'no'                => $no,
+                    'branch_name'       => $row->branch_name,
+                    'branch_address'    => $row->branch_address,
+                    'branch_phone'      => $row->branch_phone,
+                    'branch_fax'        => $row->branch_fax,
+                    'actions'           => $button
                 );
                 $no++;
             endforeach;

@@ -1,7 +1,5 @@
 <script>
-  $(function () {
-    
-    $('#example2').DataTable({
+  var table = $('#example2').DataTable({
         'paging'      : true,
         'lengthChange': false,
         'searching'   : false,
@@ -16,9 +14,7 @@
             "type": "POST"
         },
 		"columns":{LIST_FIELDS_DATA}
-    })
-  })
-  
+    });
   $("#btn-tambah").on("click", function(){
 	  window.location.href = "{URL_FORM_REDIRECT}";
   })
@@ -36,10 +32,14 @@
 			'dataType':"JSON",
 			'data':{id:id},
 			'success':function(rst){
-				if(rst.status){
-					alert(rst.msg);
+				if (rst.status){
+					$(".callout-success").removeClass("hide");
+					$("#msg-success").html(rst.msg);
+					table.ajax.reload();
 				} else {
-					alert(rst.msg);
+					$(".callout-danger").removeClass("hide");
+					$("#msg-error").html(rst.msg);
+					
 				}
 			}	
 	  });

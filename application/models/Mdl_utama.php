@@ -40,12 +40,14 @@ class Mdl_utama extends CI_Model{
         return $data;
     }
     
-    function getFormFields()
+    function getFormFields($detail)
     {
         $data = array();
         $keys = $this->table['colomn'];
         foreach($keys as $row):
-            $data[]['form_field'] = $this->formbuilder->show_form($row['form']);
+            if (!empty($row['form'])){
+                $data[]['form_field'] = $this->formbuilder->show_form($row['form'], $detail);
+            }
         endforeach;
         return $data;
     }
@@ -62,18 +64,43 @@ class Mdl_utama extends CI_Model{
     {
         $keys = $this->table['colomn'];
         $fields[] = $this->table['idkey'];
+        
         foreach($keys as $row):
             if ($row['visible']){
                 $fields[] = $row['id'];
             }
         endforeach;
-        
+                
         $data = array();        
         $data['total'] = $this->db->count_all_results($this->table['name']);
         
         $this->db->select($fields);
-        $this->db->order_by($this->table['order'][0], $this->table['order'][1]);
-        $this->db->limit(10);
+        
+        //for join
+        $join = $this->table['join'];
+        if (!empty($join)){
+            foreach($join as $row):
+                $this->db->join($row[0], $row[1], $row[2]);
+            endforeach;
+        }
+        
+        //
+        //
+        //for filter
+        $where = $this->table['where'];
+        if (!empty($where)){
+            foreach($where as $row):
+                $this->db->where($row[0], $row[1]);
+            endforeach;
+        }
+        
+        $order = $this->table['order'];
+        if (!empty($order)){
+            foreach($order as $row):
+                $this->db->order_by($row[0], $row[1]);
+            endforeach;
+        }
+        //$this->db->limit(10);
         
         $query = $this->db->get($this->table['name']);
         $data['msg'] = $this->db->last_query(); 
@@ -86,15 +113,11 @@ class Mdl_utama extends CI_Model{
         return $data;
     }
     
-    
-    
-    
-    
-    
     function AddData($fields)
     {
         $this->db->set($fields);
         $status = $this->db->insert($this->table['name']);
+        
         if ($status){
             return true; 
         } else {

@@ -17,7 +17,7 @@
     <!-- Main content -->
     <section class="content">
       
-        <div class="callout callout-info">
+      <div class="callout callout-info hide">
         <h4>Tip!</h4>
 
         <p>Add the sidebar-collapse class to the body tag to get this layout. You should combine this option with a
