@@ -27,12 +27,29 @@ class Login extends CI_Controller {
 	public function index()
 	{
             $data = array(
+                'WEB_TITLE'         => 'SeMUTSOft::Forwarding and Trcuking System ',
                 'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
                 'URL_CHECKLOGIN'    => site_url('users/login/checklogin'),
                 'URL_RESETPASSWORD' => site_url('users/reset'),
                 'URL_REGISTER'      => site_url('users/register'),
-                
             );
             $this->parser->parse($this->themes.'/layout/form/login', $data);
 	}
+        
+        function checklogin()
+        {
+            $params = $this->input->post();
+            
+            if (!empty($params)){
+                $this->load->model('Mdl_client');
+                $status = $this->Mdl_client->checklogin($params);
+                if ($status){
+                    redirect(site_url(), 'refresh');
+                } else {
+                    redirect(site_url('users/login'), 'refresh');
+                }
+            } else {
+                redirect(site_url('users/login'), 'refresh');
+            }
+        }
 }
