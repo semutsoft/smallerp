@@ -8,6 +8,11 @@ class MY_Loader extends MX_Loader {
     
     function userLayout($vars)
     {
+        $userid = $this->session->userdata('data_id');
+        if (empty($userid)){
+            redirect(site_url('users/login'), 'refresh');
+        }
+        
         $this->userid = $this->session->userdata('user_id');
         if (empty($this->userid)){
             ///redirect('users/login', 'refresh');

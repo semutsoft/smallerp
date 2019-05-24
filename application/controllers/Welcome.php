@@ -22,6 +22,8 @@ class Welcome extends CI_Controller {
         function __construct() {
             parent::__construct();
             $this->themes = $this->config->item('themes');
+            
+            
         } 
         
 	public function index()
