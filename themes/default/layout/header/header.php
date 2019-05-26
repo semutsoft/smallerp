@@ -2,7 +2,7 @@
     <!-- Logo -->
     <a href="{SITE_URL}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>Se</b>MUT</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>SeMUTSoft</b> Trucking</span>
     </a>
@@ -103,16 +103,16 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{THEMES_PAGE}/assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <img src="{avatar_image}" class="user-image" alt="{fullname}">
+              <span class="hidden-xs">{fullname}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{THEMES_PAGE}/assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="{avatar_image}" class="img-circle" alt="{fullname}">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                  {fullname} - {position}
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -142,10 +142,7 @@
               </li>
             </ul>
           </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
+          
         </ul>
       </div>
     </nav>

@@ -3,21 +3,16 @@
 /* load the MX_Loader class */
 require APPPATH."third_party/MX/Loader.php";
 
-class MY_Loader extends MX_Loader {
-    
+class MY_Loader extends MX_Loader {    
     
     function userLayout($vars)
     {
-        $userid = $this->session->userdata('data_id');
-        if (empty($userid)){
+        $this->email = $this->session->userdata('email');
+        
+        if (empty($this->email)){
             redirect(site_url('users/login'), 'refresh');
         }
-        
-        $this->userid = $this->session->userdata('user_id');
-        if (empty($this->userid)){
-            ///redirect('users/login', 'refresh');
-        }
-        
+                
         $data = array(
             'SITE_URL'  => site_url(),
             'BASE_URL'  => base_url(),
@@ -25,7 +20,7 @@ class MY_Loader extends MX_Loader {
         );
         $data = array_merge($data, $vars);
         $data['HEADER_SECTION'] = $this->parser->parse($this->themes.'/layout/header/header', $data, true);
-        $data['HEADER_SECTION'] .= $this->parser->parse($this->themes.'/layout/menu/sidebar_menu', $data, true);
+        $data['HEADER_SECTION'] .= getMenuSideBar(); //$this->parser->parse($this->themes.'/layout/menu/sidebar_menu', $data, true);
         
         $data['BODY_SECTION'] = $this->parser->parse($this->themes.'/layout/content/body_layout', $data, true);       
         $data['FOOTER_SECTION'] = $this->parser->parse($this->themes.'/layout/footer/footer', $data, true);       
@@ -47,8 +42,7 @@ class MY_Loader extends MX_Loader {
         );
         $data = array_merge($data, $vars);
         $data['HEADER_SECTION'] = $this->parser->parse($this->themes.'/layout/header/header', $data, true);
-        $data['HEADER_SECTION'] .= $this->parser->parse($this->themes.'/layout/menu/sidebar_menu', $data, true);
-        
+        $data['HEADER_SECTION'] .= getMenuSideBar(); //$this->parser->parse($this->themes.'/layout/menu/sidebar_menu', $data, true);
         
         if (empty($data['CENTER_SECTION'])){
             $data['CENTER_SECTION'] = '';
@@ -79,7 +73,7 @@ class MY_Loader extends MX_Loader {
         );
         $data = array_merge($data, $vars);
         $data['HEADER_SECTION'] = $this->parser->parse($this->themes.'/layout/header/header', $data, true);
-        $data['HEADER_SECTION'] .= $this->parser->parse($this->themes.'/layout/menu/sidebar_menu', $data, true);
+        $data['HEADER_SECTION'] .= getMenuSideBar(); //$this->parser->parse($this->themes.'/layout/menu/sidebar_menu', $data, true);
         
         if (empty($data['CENTER_SECTION'])){
             $data['CENTER_SECTION'] = '';

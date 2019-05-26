@@ -279,6 +279,12 @@ class Akun extends CI_Controller {
                 'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
                 'SITE_URL'          => site_url(),
                 'BASE_URL'          => base_url(),
+                
+                'URL_GET_DATALIST'                  => site_url('master/akun/getlist_coa'),
+                'URL_FORM_REDIRECT'                 => site_url('master/akun/form_coa'),
+                'URL_FORM_SAVE'                     => site_url('master/akun/simpan_coa'),
+                'URL_FORM_DELETE'                   => site_url('master/akun/delete_coa'),   
+                
                 'master_active'                   => 'active',
                 'btn_data_akun_active'              => 'bg-orange bg-orange-active',
                 'btn_data_mitra_active'             => 'bg-gray',
@@ -292,8 +298,11 @@ class Akun extends CI_Controller {
                 'btn_biaya_active'                  => 'bg-orange bg-orange-active',
                 'btn_job_active'                    => 'bg-gray'
             );            
-            //$data['FORM_FIELDS']        = $this->Mdl_perusahaan->getFormFields();
             
+            $data['LIST_FIELDS']        = $this->Mdl_coa->getListFields();
+            $data['LIST_FIELDS_DATA']   = json_encode($this->Mdl_coa->getListFieldsData());
+            
+                        
             $data['LEFT_SECTION']       = $this->parser->parse('master_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('data_akun_menu_section', $data, true);
             
@@ -306,6 +315,13 @@ class Akun extends CI_Controller {
                 'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
                 'SITE_URL'          => site_url(),
                 'BASE_URL'          => base_url(),
+                
+                'URL_GET_DATALIST'                  => site_url('master/akun/getlist_coa'),
+                'URL_FORM_REDIRECT'                 => site_url('master/akun/form_coa'),
+                'URL_FORM_SAVE'                     => site_url('master/akun/simpan_coa'),
+                'URL_FORM_DELETE'                   => site_url('master/akun/delete_coa'),   
+                
+                
                 'master_active'                   => 'active',
                 'btn_data_akun_active'              => 'bg-orange bg-orange-active',
                 'btn_data_mitra_active'             => 'bg-gray',
@@ -320,7 +336,8 @@ class Akun extends CI_Controller {
                 'btn_job_active'                    => 'bg-orange bg-orange-active'
             );
             
-            //$data['FORM_FIELDS']        = $this->Mdl_perusahaan->getFormFields();
+            $data['LIST_FIELDS']        = $this->Mdl_coa->getListFields();
+            $data['LIST_FIELDS_DATA']   = json_encode($this->Mdl_coa->getListFieldsData());
                         
             $data['LEFT_SECTION']       = $this->parser->parse('master_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('data_akun_menu_section', $data, true);

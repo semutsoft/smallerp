@@ -22,10 +22,15 @@ class Login extends CI_Controller {
         function __construct() {
             parent::__construct();
             $this->themes = $this->config->item('themes');
+            $email = $this->session->userdata('email');
+            if (!empty($email)){
+                redirect(site_url(), 'refresh');
+            }
         } 
         
 	public function index()
 	{
+            print_r($this->session->all_userdata());
             $data = array(
                 'WEB_TITLE'         => 'SeMUTSOft::Forwarding and Trcuking System ',
                 'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
@@ -40,16 +45,35 @@ class Login extends CI_Controller {
         {
             $params = $this->input->post();
             
+            $data = array(
+                'status'    => 0,
+                'msg'       => ''
+            );
+            
             if (!empty($params)){
                 $this->load->model('Mdl_client');
-                $status = $this->Mdl_client->checklogin($params);
-                if ($status){
-                    redirect(site_url(), 'refresh');
+                $result = $this->Mdl_client->checklogin($params);
+                if ($result['status']){
+                    $data = array(
+                        'status'    => 1,
+                        'msg'       => 'Success:: Please Wait...!!!',
+                        'log_query' => $result['log_query']
+                    );
                 } else {
-                    redirect(site_url('users/login'), 'refresh');
+                    $data = array(
+                        'status'    => 0,
+                        'msg'       => 'Failed:: Account Not Found...!!!',
+                        'log_query' => $result['log_query']
+                    );
                 }
             } else {
-                redirect(site_url('users/login'), 'refresh');
+                $data = array(
+                        'status'    => 0,
+                        'msg'       => 'Error:: Form can not empty...!!!',
+                        'log_query' => ''
+                );
             }
+            
+            echo json_encode($data);
         }
 }

@@ -36,20 +36,20 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in</p>
 
-    <form action="{URL_CHECKLOGIN}" method="post">
+    <form method="post" id="form-login">
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
+        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox"> Remember Me
+              <input type="checkbox" name="remember"> Remember Me
             </label>
           </div>
         </div>
@@ -91,6 +91,26 @@
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' /* optional */
     });
+    
+    $("#form-login").on("submit", function(){
+        var dataSerial = $(this).serialize();
+        alert(dataSerial);
+        $.ajax({
+            url:'{URL_CHECKLOGIN}',
+            type:'POST',
+            dataType:'JSON',
+            data:dataSerial,
+            success:function(rst){
+                if ( rst.status ){
+                    window.location.href = '';
+                } else {
+                    alert('Error ' + rst.log_query);
+                }
+            }
+        })
+        return false;
+    })
+    
   });
 </script>
 </body>

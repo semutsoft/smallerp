@@ -19,7 +19,9 @@ class Mdl_coa extends Mdl_utama {
             'idkey'     => 'coa_no',
             'join'      => array(),
             'where'     => array(),
-            'order'     => array('coa_no', 'asc'),
+            'order'     => array( 
+                array('coa_no', 'asc'),
+            )    
         );
     }
     
