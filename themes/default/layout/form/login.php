@@ -94,7 +94,6 @@
     
     $("#form-login").on("submit", function(){
         var dataSerial = $(this).serialize();
-        alert(dataSerial);
         $.ajax({
             url:'{URL_CHECKLOGIN}',
             type:'POST',
