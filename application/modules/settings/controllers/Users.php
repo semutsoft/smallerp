@@ -8,6 +8,9 @@ class Users extends CI_Controller {
             $this->companyid = 1;
             $this->themes = $this->config->item('themes');
             $this->load->Model('Mdl_users');
+            $this->load->Model('Mdl_employee');
+            $this->load->Model('Mdl_dept');
+            $this->load->Model('Mdl_position');
         }   
             
             
@@ -28,8 +31,10 @@ class Users extends CI_Controller {
                 'btn_data_pengguna_active'          => 'bg-orange bg-orange-active',
                 'btn_data_transaksi_active'         => 'bg-gray',
                 'btn_data_format_active'            => 'bg-gray',
-                'btn_perusahaan_active'             => 'bg-gray',
-                'btn_cabang_active'                 => 'bg-orange-active',                
+                
+                'btn_pengguna_active'               => 'bg-orange-active',
+                'btn_karyawan_active'               => 'bg-gray',                
+                
                 'WEB_TITLE'                         => 'Small ERP :: SeMUTSoft @ 2019',
                 'TITLE_PAGE'                        => 'Pengguna',
                 'TITLE_PAGE_DESC'                   => 'Pengguna',                
@@ -39,15 +44,10 @@ class Users extends CI_Controller {
             $data['LIST_FIELDS']        = $this->Mdl_users->getListFields();
             $data['LIST_FIELDS_DATA']   = json_encode($this->Mdl_users->getListFieldsData());
             
-            $data['PLUGINS_CSS']        = $this->parser->parse($this->themes.'/layout/common/datatable_plugins_css', $data, true);
-            $data['PLUGINS_SCRIPT']     = $this->parser->parse($this->themes.'/layout/common/datatable_plugins_script', $data, true);
-            $data['ADDON_SCRIPT']       = $this->parser->parse($this->themes.'/layout/common/datatable_script', $data, true);
-                        
             $data['LEFT_SECTION']       = $this->parser->parse('settings_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('pengguna_menu_section', $data, true);
-            $data['CENTER_SECTION']     .= $this->parser->parse($this->themes.'/layout/list/list', $data, true);
-            $data['CONTENT_SECTION']    = $this->parser->parse($this->themes.'/layout/content/two_side_section', $data, true);
-            $this->load->userLayout($data);
+            
+            $this->load->userListLayout($data);
 	}
         
         function getList()
@@ -57,7 +57,7 @@ class Users extends CI_Controller {
             echo json_encode($data);
         }
         
-        function form($id)
+        function form($id=0)
         {
             $data = array(
                 'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
@@ -153,6 +153,145 @@ class Users extends CI_Controller {
                     }
                 }
             }
+            echo json_encode($data);
+        }
+        
+        
+        public function employee()
+	{
+            $data = array(
+                'THEMES_PAGE'   => base_url('/themes/'.$this->themes),
+                'SITE_URL'                          => site_url(),
+                'BASE_URL'                          => base_url(),
+                
+                'URL_GET_DATALIST'                  => site_url('settings/users/getlistemployee'),
+                'URL_FORM_REDIRECT'                 => site_url('settings/users/formemployee'),
+                'URL_FORM_SAVE'                     => site_url('settings/users/simpanemployee'),
+                'URL_FORM_DELETE'                   => site_url('settings/users/deleteemployee'),     
+                
+                'settings_active'                   => 'active',
+                
+                'btn_data_perusahaan_active'        => 'bg-gray',
+                'btn_data_pengguna_active'          => 'bg-orange bg-orange-active',
+                'btn_data_transaksi_active'         => 'bg-gray',
+                'btn_data_format_active'            => 'bg-gray',
+                
+                'btn_pengguna_active'               => 'bg-gray',
+                'btn_karyawan_active'               => 'bg-orange-active',                
+                'btn_dept_active'                   => 'bg-gray',
+                'btn_position_active'               => 'bg-gray',
+                
+                'WEB_TITLE'                         => 'Small ERP :: SeMUTSoft @ 2019',
+                'TITLE_PAGE'                        => 'Karyawan',
+                'TITLE_PAGE_DESC'                   => 'Karyawan',                
+                'LIST_TITLE'                        => 'Daftar Karyawan',
+            );
+            
+            $data['LIST_FIELDS']        = $this->Mdl_employee->getListFields();
+            $data['LIST_FIELDS_DATA']   = json_encode($this->Mdl_employee->getListFieldsData());
+            
+            $data['LEFT_SECTION']       = $this->parser->parse('settings_menu_section', $data, true);
+            $data['CENTER_SECTION']     = $this->parser->parse('pengguna_menu_section', $data, true);
+            
+            $this->load->userListLayout($data);
+	}
+        
+        function getListEmployee()
+        {
+            $params     = $this->input->post();
+            $data = $this->Mdl_employee->getListData($params);
+            echo json_encode($data);
+        }
+        
+        public function dept()
+	{
+            $data = array(
+                'THEMES_PAGE'   => base_url('/themes/'.$this->themes),
+                'SITE_URL'                          => site_url(),
+                'BASE_URL'                          => base_url(),
+                
+                'URL_GET_DATALIST'                  => site_url('settings/users/getlistemployee'),
+                'URL_FORM_REDIRECT'                 => site_url('settings/users/formemployee'),
+                'URL_FORM_SAVE'                     => site_url('settings/users/simpanemployee'),
+                'URL_FORM_DELETE'                   => site_url('settings/users/deleteemployee'),     
+                
+                'settings_active'                   => 'active',
+                
+                'btn_data_perusahaan_active'        => 'bg-gray',
+                'btn_data_pengguna_active'          => 'bg-orange bg-orange-active',
+                'btn_data_transaksi_active'         => 'bg-gray',
+                'btn_data_format_active'            => 'bg-gray',
+                
+                'btn_pengguna_active'               => 'bg-gray',
+                'btn_karyawan_active'               => 'bg-gray',                
+                'btn_dept_active'                   => 'bg-orange-active',
+                'btn_position_active'               => 'bg-gray',
+                
+                'WEB_TITLE'                         => 'Small ERP :: SeMUTSoft @ 2019',
+                'TITLE_PAGE'                        => 'Karyawan',
+                'TITLE_PAGE_DESC'                   => 'Karyawan',                
+                'LIST_TITLE'                        => 'Daftar Karyawan',
+            );
+            
+            $data['LIST_FIELDS']        = $this->Mdl_dept->getListFields();
+            $data['LIST_FIELDS_DATA']   = json_encode($this->Mdl_dept->getListFieldsData());
+            
+            $data['LEFT_SECTION']       = $this->parser->parse('settings_menu_section', $data, true);
+            $data['CENTER_SECTION']     = $this->parser->parse('pengguna_menu_section', $data, true);
+            
+            $this->load->userListLayout($data);
+	}
+        
+        function getListDept()
+        {
+            $params     = $this->input->post();
+            $data = $this->Mdl_dept->getListData($params);
+            echo json_encode($data);
+        }
+        
+        public function position()
+	{
+            $data = array(
+                'THEMES_PAGE'   => base_url('/themes/'.$this->themes),
+                'SITE_URL'                          => site_url(),
+                'BASE_URL'                          => base_url(),
+                
+                'URL_GET_DATALIST'                  => site_url('settings/users/getlistemployee'),
+                'URL_FORM_REDIRECT'                 => site_url('settings/users/formemployee'),
+                'URL_FORM_SAVE'                     => site_url('settings/users/simpanemployee'),
+                'URL_FORM_DELETE'                   => site_url('settings/users/deleteemployee'),     
+                
+                'settings_active'                   => 'active',
+                
+                'btn_data_perusahaan_active'        => 'bg-gray',
+                'btn_data_pengguna_active'          => 'bg-orange bg-orange-active',
+                'btn_data_transaksi_active'         => 'bg-gray',
+                'btn_data_format_active'            => 'bg-gray',
+                
+                'btn_pengguna_active'               => 'bg-gray',
+                'btn_karyawan_active'               => 'bg-gray',     
+                'btn_dept_active'                   => 'bg-gray',
+                'btn_position_active'               => 'bg-orange-active',
+                
+                'WEB_TITLE'                         => 'Small ERP :: SeMUTSoft @ 2019',
+                'TITLE_PAGE'                        => 'Karyawan',
+                'TITLE_PAGE_DESC'                   => 'Karyawan',                
+                'LIST_TITLE'                        => 'Daftar Karyawan',
+            );
+            
+            $data['LIST_FIELDS']        = $this->Mdl_position->getListFields();
+            $data['LIST_FIELDS_DATA']   = json_encode($this->Mdl_position->getListFieldsData());
+            
+            $data['LEFT_SECTION']       = $this->parser->parse('settings_menu_section', $data, true);
+            $data['CENTER_SECTION']     = $this->parser->parse('pengguna_menu_section', $data, true);
+            
+            $this->load->userListLayout($data);
+	}
+        
+        function getListPosition()
+        {
+            $params     = $this->input->post();
+            $data = $this->Mdl_position->getListData($params);
             echo json_encode($data);
         }
 }
