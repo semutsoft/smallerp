@@ -203,6 +203,45 @@ class Users extends CI_Controller {
             echo json_encode($data);
         }
         
+        function formEmployee($id=0)
+        {
+            $data = array(
+                'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
+                'SITE_URL'          => site_url(),
+                'BASE_URL'          => base_url(),
+                'FORM_TITLE'        => 'Karyawan',
+                'TITLE_PAGE'        => 'Karyawan',
+                'TITLE_PAGE_DESC'   => 'Form Data Karyawan',
+                'FORM_NAME_ID'                      => 'form-karyawan-id',
+                'URL_FORM_SAVE'                     => site_url('settings/users/simpanemployee'),
+                   
+                'settings_active'                   => 'active',
+                
+                'btn_data_perusahaan_active'        => 'bg-gray',
+                'btn_data_pengguna_active'          => 'bg-orange bg-orange-active',
+                'btn_data_transaksi_active'         => 'bg-gray',
+                'btn_data_format_active'            => 'bg-gray',
+                
+                'btn_pengguna_active'               => 'bg-gray',
+                'btn_karyawan_active'               => 'bg-orange-active',     
+                'btn_dept_active'                   => 'bg-gray',
+                'btn_position_active'               => 'bg-gray',
+            );
+            
+            if ($id > 0){
+                $detail                     = $this->Mdl_employee->getDetail($id);
+            } else {
+                $detail = array();
+            }
+            
+            $data['FORM_FIELDS']        = $this->Mdl_employee->getFormFields($detail);
+            
+            $data['LEFT_SECTION']       = $this->parser->parse('settings_menu_section', $data, true);
+            $data['CENTER_SECTION']     = $this->parser->parse('pengguna_menu_section', $data, true);
+                    
+            $this->load->userFormLayout($data);
+        }
+        
         public function dept()
 	{
             $data = array(
@@ -210,10 +249,10 @@ class Users extends CI_Controller {
                 'SITE_URL'                          => site_url(),
                 'BASE_URL'                          => base_url(),
                 
-                'URL_GET_DATALIST'                  => site_url('settings/users/getlistemployee'),
-                'URL_FORM_REDIRECT'                 => site_url('settings/users/formemployee'),
-                'URL_FORM_SAVE'                     => site_url('settings/users/simpanemployee'),
-                'URL_FORM_DELETE'                   => site_url('settings/users/deleteemployee'),     
+                'URL_GET_DATALIST'                  => site_url('settings/users/getlistdept'),
+                'URL_FORM_REDIRECT'                 => site_url('settings/users/formdept'),
+                'URL_FORM_SAVE'                     => site_url('settings/users/simpandept'),
+                'URL_FORM_DELETE'                   => site_url('settings/users/deletedept'),     
                 
                 'settings_active'                   => 'active',
                 
@@ -249,6 +288,45 @@ class Users extends CI_Controller {
             echo json_encode($data);
         }
         
+        function formDept($id=0)
+        {
+            $data = array(
+                'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
+                'SITE_URL'          => site_url(),
+                'BASE_URL'          => base_url(),
+                'FORM_TITLE'        => 'Jabatan',
+                'TITLE_PAGE'        => 'Jabatan',
+                'TITLE_PAGE_DESC'   => 'Form Data Jabatan',
+                'FORM_NAME_ID'                      => 'form-position-id',
+                'URL_FORM_SAVE'                     => site_url('settings/users/simpandept'),
+                   
+                'settings_active'                   => 'active',
+                
+                'btn_data_perusahaan_active'        => 'bg-gray',
+                'btn_data_pengguna_active'          => 'bg-orange bg-orange-active',
+                'btn_data_transaksi_active'         => 'bg-gray',
+                'btn_data_format_active'            => 'bg-gray',
+                
+                'btn_pengguna_active'               => 'bg-gray',
+                'btn_karyawan_active'               => 'bg-gray',     
+                'btn_dept_active'                   => 'bg-orange-active',
+                'btn_position_active'               => 'bg-gray',
+            );
+            
+            if ($id > 0){
+                $detail                     = $this->Mdl_dept->getDetail($id);
+            } else {
+                $detail = array();
+            }
+            
+            $data['FORM_FIELDS']        = $this->Mdl_dept->getFormFields($detail);
+            
+            $data['LEFT_SECTION']       = $this->parser->parse('settings_menu_section', $data, true);
+            $data['CENTER_SECTION']     = $this->parser->parse('pengguna_menu_section', $data, true);
+                    
+            $this->load->userFormLayout($data);
+        }
+        
         public function position()
 	{
             $data = array(
@@ -256,10 +334,10 @@ class Users extends CI_Controller {
                 'SITE_URL'                          => site_url(),
                 'BASE_URL'                          => base_url(),
                 
-                'URL_GET_DATALIST'                  => site_url('settings/users/getlistemployee'),
-                'URL_FORM_REDIRECT'                 => site_url('settings/users/formemployee'),
-                'URL_FORM_SAVE'                     => site_url('settings/users/simpanemployee'),
-                'URL_FORM_DELETE'                   => site_url('settings/users/deleteemployee'),     
+                'URL_GET_DATALIST'                  => site_url('settings/users/getlistposition'),
+                'URL_FORM_REDIRECT'                 => site_url('settings/users/formposition'),
+                'URL_FORM_SAVE'                     => site_url('settings/users/simpanposition'),
+                'URL_FORM_DELETE'                   => site_url('settings/users/deleteposition'),     
                 
                 'settings_active'                   => 'active',
                 
@@ -274,9 +352,9 @@ class Users extends CI_Controller {
                 'btn_position_active'               => 'bg-orange-active',
                 
                 'WEB_TITLE'                         => 'Small ERP :: SeMUTSoft @ 2019',
-                'TITLE_PAGE'                        => 'Karyawan',
-                'TITLE_PAGE_DESC'                   => 'Karyawan',                
-                'LIST_TITLE'                        => 'Daftar Karyawan',
+                'TITLE_PAGE'                        => 'Jabatan',
+                'TITLE_PAGE_DESC'                   => 'Jabatan',                
+                'LIST_TITLE'                        => 'Daftar Jabatan',
             );
             
             $data['LIST_FIELDS']        = $this->Mdl_position->getListFields();
@@ -293,5 +371,44 @@ class Users extends CI_Controller {
             $params     = $this->input->post();
             $data = $this->Mdl_position->getListData($params);
             echo json_encode($data);
+        }
+        
+        function formPosition($id=0)
+        {
+            $data = array(
+                'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
+                'SITE_URL'          => site_url(),
+                'BASE_URL'          => base_url(),
+                'FORM_TITLE'        => 'Jabatan',
+                'TITLE_PAGE'        => 'Jabatan',
+                'TITLE_PAGE_DESC'   => 'Form Data Jabatan',
+                'FORM_NAME_ID'                      => 'form-position-id',
+                'URL_FORM_SAVE'                     => site_url('settings/users/simpanposition'),
+                   
+                'settings_active'                   => 'active',
+                
+                'btn_data_perusahaan_active'        => 'bg-gray',
+                'btn_data_pengguna_active'          => 'bg-orange bg-orange-active',
+                'btn_data_transaksi_active'         => 'bg-gray',
+                'btn_data_format_active'            => 'bg-gray',
+                
+                'btn_pengguna_active'               => 'bg-gray',
+                'btn_karyawan_active'               => 'bg-gray',     
+                'btn_dept_active'                   => 'bg-gray',
+                'btn_position_active'               => 'bg-orange-active',
+            );
+            
+            if ($id > 0){
+                $detail                     = $this->Mdl_position->getDetail($id);
+            } else {
+                $detail = array();
+            }
+            
+            $data['FORM_FIELDS']        = $this->Mdl_position->getFormFields($detail);
+            
+            $data['LEFT_SECTION']       = $this->parser->parse('settings_menu_section', $data, true);
+            $data['CENTER_SECTION']     = $this->parser->parse('pengguna_menu_section', $data, true);
+                    
+            $this->load->userFormLayout($data);
         }
 }

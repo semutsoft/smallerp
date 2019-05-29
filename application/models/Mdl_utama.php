@@ -94,6 +94,17 @@ class Mdl_utama extends CI_Model{
             endforeach;
         }
         
+        //for filter
+        $where_or = @$this->table['where_or'];
+        if (!empty($where_or)){
+            $this->db->group_start();
+            foreach($where_or as $row):
+                $this->db->or_where($row[0], $row[1]);
+            endforeach;
+            $this->db->group_end();
+        }
+        
+        
         $order = $this->table['order'];
         if (!empty($order)){
             foreach($order as $row):

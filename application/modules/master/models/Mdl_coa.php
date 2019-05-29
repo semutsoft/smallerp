@@ -25,8 +25,37 @@ class Mdl_coa extends Mdl_utama {
         );
     }
     
+    function getListMaster($code)
+    {
+        $params = array();
+        $this->table['where'][] = array('CHAR_LENGTH(coa_no)', 1);
+        $data_array = $this->getList($params);
+        $data = array();
+        foreach($data_array['results'] as $row):
+            
+            if ($code != 0){
+                
+                if ($row->coa_no == $code){
+                    $btn_class = 'btn-warning';
+                } else {
+                    $btn_class = 'btn-info';
+                }
+            }
+            
+            $data[] = array(
+                'coa_name'  => $row->coa_name,
+                'btn_class' => $btn_class,
+                'link'      => site_url('master/akun/coa/'.$row->coa_no)
+            );
+        endforeach;
+        return $data;
+    }
+    
+    
     function getListData($params)
     {
+        $this->table['where'][] = array('SUBSTRING(coa_no, 1,1) =', $params['code']);
+        
         $data_array = $this->getList($params);
         
         if ($data_array['filter'] == 0){

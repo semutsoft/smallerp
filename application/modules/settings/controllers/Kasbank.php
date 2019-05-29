@@ -58,4 +58,13 @@ class Kasbank extends CI_Controller {
             echo json_encode($data);
         
         }
+        
+        
+        function kasbank_getList()
+        {
+            $params     = $this->input->post();
+            $data = $this->Mdl_kasbank->getListData($params);
+            echo json_encode($data);
+        
+        }
 }        

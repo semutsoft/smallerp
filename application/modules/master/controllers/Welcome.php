@@ -23,8 +23,9 @@ class Welcome extends CI_Controller {
                 
                 'TITLE_PAGE'                        => 'Persiapan Data',
                 'TITLE_PAGE_DESC'                   => 'Prepare your master data before you use',
+                'LIST_TITLE'                        => 'Mata Uang',
                 
-                'master_active'                  => 'active',
+                'master_active'                     => 'active',
                 'btn_data_akun_active'              => 'bg-orange bg-orange-active',
                 'btn_data_mitra_active'             => 'bg-gray',
                 'btn_data_tarif_exim_active'        => 'bg-gray',

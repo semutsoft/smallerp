@@ -69,7 +69,7 @@ class Format extends CI_Controller {
                 'SITE_URL'                          => site_url(),
                 'BASE_URL'                          => base_url(),
                 
-                'URL_GET_DATALIST'                  => site_url('settings/kasbank/getlist'),
+                'URL_GET_DATALIST'                  => site_url('settings/kasbank/kasbank_getlist'),
                 'URL_FORM_REDIRECT'                 => site_url('settings/format/kasbank_form'),
                 'URL_FORM_SAVE'                     => site_url('settings/format/kasbank_simpan'),
                 'URL_FORM_DELETE'                   => site_url('settings/format/kasbank_delete'),  
@@ -92,7 +92,7 @@ class Format extends CI_Controller {
             );
             
             $data['LIST_FIELDS']        = $this->Mdl_kasbank->getListFields();
-            
+            $data['LIST_FIELDS_DATA']   = json_encode($this->Mdl_kasbank->getListFieldsData());
             
             $data['LEFT_SECTION']       = $this->parser->parse('settings_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('format_menu_section', $data, true);

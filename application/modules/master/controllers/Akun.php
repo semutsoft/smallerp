@@ -143,14 +143,18 @@ class Akun extends CI_Controller {
             echo json_encode($data);
         }
         
-        public function coa()
+        public function coa($code=1)
 	{
             $data = array(
                 'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
                 'SITE_URL'          => site_url(),
                 'BASE_URL'          => base_url(),
                 
-                'URL_GET_DATALIST'                  => site_url('master/akun/getlist_coa'),
+                'TITLE_PAGE'                        => 'Persiapan Data',
+                'TITLE_PAGE_DESC'                   => 'Prepare your master data before you use',
+                'LIST_TITLE'                        => 'Daftar Akun',
+                
+                'URL_GET_DATALIST'                  => site_url('master/akun/getlist_coa/'.$code),
                 'URL_FORM_REDIRECT'                 => site_url('master/akun/form_coa'),
                 'URL_FORM_SAVE'                     => site_url('master/akun/simpan_coa'),
                 'URL_FORM_DELETE'                   => site_url('master/akun/delete_coa'),   
@@ -171,9 +175,13 @@ class Akun extends CI_Controller {
             
             $data['LIST_FIELDS']        = $this->Mdl_coa->getListFields();
             $data['LIST_FIELDS_DATA']   = json_encode($this->Mdl_coa->getListFieldsData());
+            $data['COA_MASTER_LIST']    = $this->Mdl_coa->getListMaster($code);
+            //print_r($data['COA_MASTER_LIST']);
             
             $data['LEFT_SECTION']       = $this->parser->parse('master_menu_section', $data, true);
             $data['CENTER_SECTION']     = $this->parser->parse('data_akun_menu_section', $data, true);
+            
+            $data['LIST_TITLE']     .= $this->parser->parse('coa_akun_section', $data, true);
             
             $this->load->userListLayout($data);
 	}
@@ -207,9 +215,10 @@ class Akun extends CI_Controller {
             $this->load->userFormLayout($data);
         }   
         
-        function getList_coa()
+        function getList_coa($code=1)
         {
             $params     = $this->input->post();
+            $params['code'] = $code;
             $data = $this->Mdl_coa->getListData($params);
             echo json_encode($data);
         }
@@ -279,6 +288,10 @@ class Akun extends CI_Controller {
                 'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
                 'SITE_URL'          => site_url(),
                 'BASE_URL'          => base_url(),
+                
+                'TITLE_PAGE'                        => 'Persiapan Data',
+                'TITLE_PAGE_DESC'                   => 'Prepare your master data before you use',
+                'LIST_TITLE'                        => 'Biaya',
                 
                 'URL_GET_DATALIST'                  => site_url('master/akun/getlist_coa'),
                 'URL_FORM_REDIRECT'                 => site_url('master/akun/form_coa'),
