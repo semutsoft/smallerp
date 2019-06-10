@@ -105,6 +105,7 @@ class Mdl_utama extends CI_Model{
         }
         
         
+        
         $order = $this->table['order'];
         if (!empty($order)){
             foreach($order as $row):
