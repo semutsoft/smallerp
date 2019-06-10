@@ -85,7 +85,6 @@ class Mdl_utama extends CI_Model{
         }
         
         //
-        //
         //for filter
         $where = $this->table['where'];
         if (!empty($where)){
@@ -103,8 +102,6 @@ class Mdl_utama extends CI_Model{
             endforeach;
             $this->db->group_end();
         }
-        
-        
         
         $order = $this->table['order'];
         if (!empty($order)){
