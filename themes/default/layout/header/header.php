@@ -134,10 +134,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{SITE_URL}/users/profile" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="{SITE_URL}/users/logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
