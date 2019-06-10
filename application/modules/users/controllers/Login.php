@@ -52,7 +52,7 @@ class Login extends CI_Controller {
             
             if (!empty($params)){
                 $this->load->model('Mdl_client');
-                $result = $this->Mdl_client->checklogin($params);
+                $result     = $this->Mdl_client->checklogin($params);                
                 if ($result['status']){
                     $data = array(
                         'status'    => 1,
@@ -72,8 +72,7 @@ class Login extends CI_Controller {
                         'msg'       => 'Error:: Form can not empty...!!!',
                         'log_query' => ''
                 );
-            }
-            
+            }            
             echo json_encode($data);
         }
 }

@@ -22,12 +22,18 @@ class Welcome extends CI_Controller {
         function __construct() {
             parent::__construct();
             $this->themes = $this->config->item('themes');
-            
-            
         } 
         
 	public function index()
 	{
+            print_r($this->session->all_userdata());
+            $login_id = $this->session->userdata('user_id');
+            $this->load->model('Mdl_employee');
+            $employee   = $this->Mdl_employee->getDetail($login_id);
+            $this->session->set_userdata('fullname', $employee->employee_name);
+            $this->session->set_userdata('avatar', $employee->photo);
+            $this->session->set_userdata('position', $employee->employee_position);
+            
             $data = array(
                 'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
                 'TITLE_PAGE'        => 'Dashboard',
