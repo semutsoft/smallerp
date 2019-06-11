@@ -3,35 +3,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Perusahaan extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-    
-        function __construct() {
+	function __construct() {
             parent::__construct();
             $this->themes = $this->config->item('themes');
             $this->load->model('Mdl_perusahaan');
-            $this->companyid = 1;
+             $this->companyid = $this->session->userdata('client_id');
         } 
         
 	public function index()
 	{
             $data = array(
-                'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
-                'SITE_URL'          => site_url(),
-                'BASE_URL'          => base_url(),
+                'THEMES_PAGE'                       => base_url('/themes/'.$this->themes),
+                'SITE_URL'                          => site_url(),
+                'BASE_URL'                          => base_url(),
                 'TITLE_PAGE'                        => 'Settings',
                 'TITLE_PAGE_DESC'                   => 'Change your account, users',
                 
@@ -39,13 +23,13 @@ class Perusahaan extends CI_Controller {
                 'FORM_NAME_ID'                      => 'company_form',
                 'URL_FORM_SAVE'                     => site_url('settings/perusahaan/simpan'),
                 
-                'settings_active'           => 'active',
+                'settings_active'                   => 'active',
                 'btn_data_perusahaan_active'        => 'bg-orange bg-orange-active',
                 'btn_data_pengguna_active'          => 'bg-gray',
                 'btn_data_transaksi_active'         => 'bg-gray',
                 'btn_data_format_active'            => 'bg-gray',
-                'btn_perusahaan_active'     => 'bg-orange-active',
-                'btn_cabang_active'         => 'bg-gray',
+                'btn_perusahaan_active'             => 'bg-orange-active',
+                'btn_cabang_active'                 => 'bg-gray',
             );
             
             $detail                     = $this->Mdl_perusahaan->getDetail($this->companyid);

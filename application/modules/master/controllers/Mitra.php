@@ -51,6 +51,44 @@ class Mitra extends CI_Controller {
             $this->load->userListLayout($data);
 	}
         
+        function form($code='')
+        {
+            $data = array(
+                'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
+                'SITE_URL'          => site_url(),
+                'BASE_URL'          => base_url(),
+                
+                'FORM_TITLE'                        => 'Kustomer',
+                'TITLE_PAGE'                        => 'Kustomer',
+                'TITLE_PAGE_DESC'                   => 'Kustomer',
+                
+                'master_active'                     => 'active',
+                'btn_data_akun_active'              => 'bg-gray',
+                'btn_data_mitra_active'             => 'bg-orange bg-orange-active',
+                'btn_data_tarif_exim_active'        => 'bg-gray',
+                'btn_data_tarif_truck_active'       => 'bg-gray',
+                'btn_data_kendaraan_active'         => 'bg-gray',
+                'btn_data_lain_active'              => 'bg-gray',
+                
+                'btn_customer_active'               => 'bg-orange bg-orange-active',
+                'btn_vendor_active'                 => 'bg-gray',
+                'btn_employee_active'               => 'bg-gray',
+                'btn_dept_active'                   => 'bg-gray',
+                'btn_ship_active'                   => 'bg-gray',
+                'btn_harbour_active'                => 'bg-gray',
+            );
+            
+            if (!empty($code)){
+                $detail                     = $this->Mdl_customer->getDetail($code);
+            } else {
+                $detail = array();
+            }
+            $data['FORM_FIELDS']        = $this->Mdl_customer->getFormFields($detail);
+            
+            $data['LEFT_SECTION']       = $this->parser->parse('master_menu_section', $data, true);
+            $data['CENTER_SECTION']     = $this->parser->parse('data_mitra_menu_section', $data, true);
+            $this->load->userFormLayout($data);
+        }
         
         function getList()
         {
@@ -96,6 +134,45 @@ class Mitra extends CI_Controller {
             $data['CENTER_SECTION']     = $this->parser->parse('data_mitra_menu_section', $data, true);
             $this->load->userListLayout($data);
 	}
+        
+        function form_vendor($code='')
+        {
+            $data = array(
+                'THEMES_PAGE'       => base_url('/themes/'.$this->themes),
+                'SITE_URL'          => site_url(),
+                'BASE_URL'          => base_url(),
+                
+                'FORM_TITLE'                        => 'Vendor',
+                'TITLE_PAGE'                        => 'Vendor',
+                'TITLE_PAGE_DESC'                   => 'Vendor',
+                
+                'master_active'                     => 'active',
+                'btn_data_akun_active'              => 'bg-gray',
+                'btn_data_mitra_active'             => 'bg-orange bg-orange-active',
+                'btn_data_tarif_exim_active'        => 'bg-gray',
+                'btn_data_tarif_truck_active'       => 'bg-gray',
+                'btn_data_kendaraan_active'         => 'bg-gray',
+                'btn_data_lain_active'              => 'bg-gray',
+                
+                'btn_customer_active'               => 'bg-gray',
+                'btn_vendor_active'                 => 'bg-orange bg-orange-active',
+                'btn_employee_active'               => 'bg-gray',
+                'btn_dept_active'                   => 'bg-gray',
+                'btn_ship_active'                   => 'bg-gray',
+                'btn_harbour_active'                => 'bg-gray',
+            );
+            
+            if (!empty($code)){
+                $detail                     = $this->Mdl_vendor->getDetail($code);
+            } else {
+                $detail = array();
+            }
+            $data['FORM_FIELDS']        = $this->Mdl_vendor->getFormFields($detail);
+            
+            $data['LEFT_SECTION']       = $this->parser->parse('master_menu_section', $data, true);
+            $data['CENTER_SECTION']     = $this->parser->parse('data_mitra_menu_section', $data, true);
+            $this->load->userFormLayout($data);
+        }
         
         function getListVendor()
         {

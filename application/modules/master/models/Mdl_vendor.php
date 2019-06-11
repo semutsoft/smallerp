@@ -8,20 +8,17 @@ class Mdl_vendor extends Mdl_utama {
         $this->table = array(
             'name'      => 'mst_vendor',
             'colomn'    => array(
-                'vendor_id'       => array('id'=>'vendor_id', 'label'=>'ID', 'key'=>true, 'visible'=>false, 'form'=>array(
-                                        array('id'=>'vendor_id', 'label'=>'ID', 'visible'=>false, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>false, 'col_css'=>'col-md-10'))), 
-                
                 'vendor_code' => array('id'=>'vendor_code', 'label'=>'Code', 'key'=>true, 'visible'=>true, 'form'=>array(                                        
-                    array('id'=>'vendor_code', 'label'=>'Code', 'visible'=>false, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>false, 'col_css'=>'col-md-10'))), 
+                    array('id'=>'vendor_code', 'label'=>'Code', 'visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>false, 'col_css'=>'col-md-10'))), 
                 'vendor_name' => array('id'=>'vendor_name', 'label'=>'Name', 'key'=>true, 'visible'=>true, 'form'=>array(                                        
-                    array('id'=>'vendor_name', 'label'=>'Name', 'visible'=>false, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>false, 'col_css'=>'col-md-10'))), 
+                    array('id'=>'vendor_name', 'label'=>'Name', 'visible'=>true, 'format'=>'TEXT', 'placeholder'=>'', 'required'=>false, 'col_css'=>'col-md-10'))), 
                 
             ),
-            'idkey'     => 'vendor_id',
+            'idkey'     => 'vendor_code',
             'join'      => array(),
             'where'     => array(),
             'order'     => array(
-                array('vendor_id', 'asc'),
+                array('vendor_code', 'asc'),
             )    
         );
     }
@@ -40,8 +37,8 @@ class Mdl_vendor extends Mdl_utama {
         if ($data_array['filter'] > 0 ){
             $no = 1;
             foreach($data_array['results'] as $row):
-                $button = '<button class="btn btn-warning btn-sm btn-ubah" data-id="'.$row->vendor_id.'"> <i class="fa fa-pencil"></i> Ubah</button>&nbsp;';
-                $button .= '<button class="btn btn-danger btn-sm btn-hapus" data-id="'.$row->vendor_id.'"> <i class="fa fa-trash"></i>  Hapus</button>';
+                $button = '<button class="btn btn-warning btn-sm btn-ubah" data-id="'.$row->vendor_code.'"> <i class="fa fa-pencil"></i> Ubah</button>&nbsp;';
+                $button .= '<button class="btn btn-danger btn-sm btn-hapus" data-id="'.$row->vendor_code.'"> <i class="fa fa-trash"></i>  Hapus</button>';
                 
                 $list[] = array(
                     'no'            => $no,

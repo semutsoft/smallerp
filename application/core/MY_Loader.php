@@ -25,7 +25,7 @@ class MY_Loader extends MX_Loader {
             'BASE_URL'      => base_url(),
             'WEB_TITLE'     => $this->config->item('web_title'),
             'fullname'      => $this->session->userdata('fullname'),
-            'avatar_image'  => $avatar_image,
+            'avatar_image'  => base_url($avatar_image),
             'position'      => $this->session->userdata('position')
         );
         
@@ -60,7 +60,7 @@ class MY_Loader extends MX_Loader {
             'BASE_URL'      => base_url(),
             'WEB_TITLE'     => $this->config->item('web_title'),
             'fullname'      => $this->session->userdata('fullname'),
-            'avatar_image'  => $avatar_image,
+            'avatar_image'  => base_url($avatar_image),
             'position'      => $this->session->userdata('position')
         );
                 
@@ -104,7 +104,7 @@ class MY_Loader extends MX_Loader {
             'SITE_URL'  => site_url(),
             'BASE_URL'  => base_url(),
             'fullname'      => $this->session->userdata('fullname'),
-            'avatar_image'  => $avatar_image,
+            'avatar_image'  => base_url($avatar_image),
             'position'      => $this->session->userdata('position')
         );
         

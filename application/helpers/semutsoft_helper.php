@@ -19,7 +19,7 @@ if ( ! function_exists('getMenuSidebar'))
             $avatar_image   = 'public/images/'.$ci->session->userdata('client_id').'/avatar/default/male.jpg';
         }
         
-        $data['avatar_image']   = $avatar_image;
+        $data['avatar_image']   = base_url($avatar_image);
         $data['position']       = $ci->session->userdata('position');
         
         $sidebar = $ci->parser->parse($ci->themes.'/layout/menu/sidebar_menu', $data, true);

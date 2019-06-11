@@ -8,7 +8,7 @@ class Cabang extends CI_Controller {
             $this->companyid = 1;
             $this->themes = $this->config->item('themes');
             $this->load->model('Mdl_cabang');
-            
+             $this->companyid = $this->session->userdata('client_id');
         } 
         
 	public function index()
